@@ -67,6 +67,15 @@ int ff_openssl_init(void)
 {
     avpriv_lock_avformat();
     if (!openssl_init) {
+/**
+////
+// Modifier: vitonzhangtt (vitonzhang@gmail.com)
+// Date: 2018-11-26
+// Reason: SSL library initialization will be performed in the caller.
+// 		This will fix the crash that occur when the application 
+//		launching.
+////
+
         SSL_library_init();
         SSL_load_error_strings();
 #if HAVE_THREADS
@@ -86,6 +95,7 @@ int ff_openssl_init(void)
 #endif
         }
 #endif
+*/
     }
     openssl_init++;
     avpriv_unlock_avformat();
